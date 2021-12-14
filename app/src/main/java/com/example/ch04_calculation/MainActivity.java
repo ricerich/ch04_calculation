@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         //1.자바 view객체를 만든다
         EditText edt1, edt2;
         Button btn1, btn2, btn3, btn4;
+        Button btn5;
         TextView tv1;
 
         //2.자바 view 객체에 xml객체를 연결한다(바인딩한다)
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         btn2 = findViewById(R.id.BtnSub);
         btn3 = findViewById(R.id.BtnMul);
         btn4 = findViewById(R.id.BtnDiv);
+        btn5 = findViewById(R.id.BtnMod);
 
         tv1 = findViewById(R.id.TextResult);
 
@@ -118,21 +121,81 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //방법3. 객체조차도 따로 만들지 않겠다. 바로 쓰겠다.
-        btn4.setOnTouchListener(new View.OnTouchListener() {
+//        btn4.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View view, MotionEvent motionEvent) {
+//                //1.에디트텍스트에서 값을 가져온다
+//                String str1 = edt1.getText().toString();//객체를 글자로 바꾼다
+//                String str2 = edt2.getText().toString();
+//
+//                //2.가져온 값을 나눈다.
+//                int n1 = Integer.parseInt(str1);//글자를 숫자로 바꾼다
+//                int n2 = Integer.parseInt(str2);
+//                int n3 = n1 / n2;
+//
+//                //3.더한결과를 텍스트뷰에 출력한다
+//                tv1.setText("결과출력:"+n3);
+//                return false;
+//            }
+//        });
+
+        btn4.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
+            public void onClick(View view) {
                 //1.에디트텍스트에서 값을 가져온다
                 String str1 = edt1.getText().toString();//객체를 글자로 바꾼다
                 String str2 = edt2.getText().toString();
 
-                //2.가져온 값을 나눈다.
-                int n1 = Integer.parseInt(str1);//글자를 숫자로 바꾼다
-                int n2 = Integer.parseInt(str2);
-                int n3 = n1 / n2;
+                if(str1.equals("") || str2.equals(""))//에디트 둘 중에 하나라도 값이 없으면
+                {
+                    Toast.makeText(MainActivity.this, "값없음!", Toast.LENGTH_SHORT).show();
+                }
+                else //그렇지 않고 둘다 값이 있으면
+                {
+                    if(str2.equals("0"))
+                    {
+                        Toast.makeText(MainActivity.this, "0으로 나눌 수 없음!", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                        //2.가져온 값을 나눈다.
+                        double n1 = Double.parseDouble(str1);
+                        double n2 = Double.parseDouble(str2);
+                        double n3 = n1 / n2;
+                        n3 = ((int)(n3 *100))/100.0;
 
-                //3.더한결과를 텍스트뷰에 출력한다
-                tv1.setText("결과출력:"+n3);
-                return false;
+                        //3.더한결과를 텍스트뷰에 출력한다
+                        tv1.setText("결과출력:" + n3);
+                    }
+                }
+            }
+        });
+
+        btn5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //1.에디트텍스트에서 값을 가져온다
+                String str1 = edt1.getText().toString();//객체를 글자로 바꾼다
+                String str2 = edt2.getText().toString();
+
+                if(str1.equals("") || str2.equals(""))//에디트 둘 중에 하나라도 값이 없으면
+                {
+                    Toast.makeText(MainActivity.this, "값없음!", Toast.LENGTH_SHORT).show();
+                }
+                else //그렇지 않고 둘다 값이 있으면
+                {
+                    //2.가져온 값을 나눈다.
+//                    int n1 = Integer.parseInt(str1);//글자를 숫자로 바꾼다
+//                    int n2 = Integer.parseInt(str2);
+//                    int n3 = n1 % n2;
+                    double n1 = Double.parseDouble(str1);
+                    double n2 = Double.parseDouble(str2);
+                    double n3 = n1 % n2;
+
+                    //3.더한결과를 텍스트뷰에 출력한다
+                    tv1.setText("결과출력:"+n3);
+                }
+
             }
         });
 
