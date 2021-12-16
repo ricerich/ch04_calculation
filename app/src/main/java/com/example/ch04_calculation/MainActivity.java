@@ -15,7 +15,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+//        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_table_layout);
 
         //1.자바 view객체를 만든다
         //2.자바 view 객체에 xml객체를 연결한다(바인딩한다)
@@ -38,6 +39,229 @@ public class MainActivity extends AppCompatActivity {
         btn5 = findViewById(R.id.BtnMod);
 
         tv1 = findViewById(R.id.TextResult);
+
+//        Button btn00 = findViewById(R.id.BtnNum0);
+//        Button btn01 = findViewById(R.id.BtnNum1);
+//        Button btn02 = findViewById(R.id.BtnNum2);
+//        Button btn03 = findViewById(R.id.BtnNum3);
+//        Button btn04 = findViewById(R.id.BtnNum4);
+//        Button btn05 = findViewById(R.id.BtnNum5);
+//        Button btn06 = findViewById(R.id.BtnNum6);
+//        Button btn07 = findViewById(R.id.BtnNum7);
+//        Button btn08 = findViewById(R.id.BtnNum8);
+//        Button btn09 = findViewById(R.id.BtnNum9);
+
+        int btnID_arr[] = {R.id.BtnNum0, R.id.BtnNum1, R.id.BtnNum2, R.id.BtnNum3, R.id.BtnNum4,
+                           R.id.BtnNum5, R.id.BtnNum6, R.id.BtnNum7, R.id.BtnNum8, R.id.BtnNum8};
+
+        Button btnArr[] = new Button[10];
+
+        for(int i=0; i<btnArr.length;++i) {
+//            btnArr[i] = findViewById(R.id.BtnNum+i);
+            btnArr[i] = findViewById(btnID_arr[i]);
+        }
+
+//        btnArr[0] = findViewById(R.id.BtnNum0);
+//        btnArr[1] = findViewById(R.id.BtnNum1);
+//        btnArr[2] = findViewById(R.id.BtnNum2);
+//        btnArr[3] = findViewById(R.id.BtnNum3);
+//        btnArr[4] = findViewById(R.id.BtnNum4);
+//        btnArr[5] = findViewById(R.id.BtnNum5);
+//        btnArr[6] = findViewById(R.id.BtnNum6);
+//        btnArr[7] = findViewById(R.id.BtnNum7);
+//        btnArr[8] = findViewById(R.id.BtnNum8);
+//        btnArr[9] = findViewById(R.id.BtnNum9);
+
+        for(int i=0; i<btnArr.length;++i)
+        {
+            int finalI = i;
+            btnArr[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (edt1.isFocused())//에딧1에 포커스가 있을때
+                    {
+                        String str1 = edt1.getText().toString() + finalI;
+                        edt1.setText(str1);
+                    } else if (edt2.isFocused())//에딧2에 포커스가 있을때
+                    {
+                        String str1 = edt2.getText().toString() + 2;
+                        edt2.setText(str1);
+
+                    } else {
+                        Toast.makeText(getApplicationContext(), "에디트를 선택해주세요!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+
+//        btnArr[0].setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(edt1.isFocused())//에딧1에 포커스가 있을때
+//                {
+//                    String str1 = edt1.getText().toString() + "0";
+//                    edt1.setText(str1);
+//                }
+//                else if(edt2.isFocused())//에딧2에 포커스가 있을때
+//                {
+//                    String str1 = edt2.getText().toString() + "0";
+//                    edt2.setText(str1);
+//
+//                }
+//                else
+//                {
+//                    Toast.makeText(getApplicationContext(),"에디트를 선택해주세요!",Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
+//
+//        btnArr[1].setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(edt1.isFocused())//에딧1에 포커스가 있을때
+//                {
+//                    String str1 = edt1.getText().toString() + "1";
+//                    edt1.setText(str1);
+//                }
+//                else if(edt2.isFocused())//에딧2에 포커스가 있을때
+//                {
+//                    String str1 = edt2.getText().toString() + "1";
+//                    edt2.setText(str1);
+//
+//                }
+//            }
+//        });
+//        btnArr[2].setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(edt1.isFocused())//에딧1에 포커스가 있을때
+//                {
+//                    String str1 = edt1.getText().toString() + "2";
+//                    edt1.setText(str1);
+//                }
+//                else if(edt2.isFocused())//에딧2에 포커스가 있을때
+//                {
+//                    String str1 = edt2.getText().toString() + "2";
+//                    edt2.setText(str1);
+//
+//                }
+//            }
+//        });
+//        btnArr[3].setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(edt1.isFocused())//에딧1에 포커스가 있을때
+//                {
+//                    String str1 = edt1.getText().toString() + "3";
+//                    edt1.setText(str1);
+//                }
+//                else if(edt2.isFocused())//에딧2에 포커스가 있을때
+//                {
+//                    String str1 = edt2.getText().toString() + "3";
+//                    edt2.setText(str1);
+//
+//                }
+//            }
+//        });
+//        btnArr[4].setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(edt1.isFocused())//에딧1에 포커스가 있을때
+//                {
+//                    String str1 = edt1.getText().toString() + "4";
+//                    edt1.setText(str1);
+//                }
+//                else if(edt2.isFocused())//에딧2에 포커스가 있을때
+//                {
+//                    String str1 = edt2.getText().toString() + "4";
+//                    edt2.setText(str1);
+//
+//                }
+//            }
+//        });
+//        btnArr[5].setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(edt1.isFocused())//에딧1에 포커스가 있을때
+//                {
+//                    String str1 = edt1.getText().toString() + "5";
+//                    edt1.setText(str1);
+//                }
+//                else if(edt2.isFocused())//에딧2에 포커스가 있을때
+//                {
+//                    String str1 = edt2.getText().toString() + "5";
+//                    edt2.setText(str1);
+//
+//                }
+//            }
+//        });
+//        btnArr[6].setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(edt1.isFocused())//에딧1에 포커스가 있을때
+//                {
+//                    String str1 = edt1.getText().toString() + "6";
+//                    edt1.setText(str1);
+//                }
+//                else if(edt2.isFocused())//에딧2에 포커스가 있을때
+//                {
+//                    String str1 = edt2.getText().toString() + "6";
+//                    edt2.setText(str1);
+//
+//                }
+//            }
+//        });
+//        btnArr[7].setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(edt1.isFocused())//에딧1에 포커스가 있을때
+//                {
+//                    String str1 = edt1.getText().toString() + "7";
+//                    edt1.setText(str1);
+//                }
+//                else if(edt2.isFocused())//에딧2에 포커스가 있을때
+//                {
+//                    String str1 = edt2.getText().toString() + "7";
+//                    edt2.setText(str1);
+//
+//                }
+//            }
+//        });
+//        btnArr[8].setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(edt1.isFocused())//에딧1에 포커스가 있을때
+//                {
+//                    String str1 = edt1.getText().toString() + "8";
+//                    edt1.setText(str1);
+//                }
+//                else if(edt2.isFocused())//에딧2에 포커스가 있을때
+//                {
+//                    String str1 = edt2.getText().toString() + "8";
+//                    edt2.setText(str1);
+//
+//                }
+//            }
+//        });
+//        btnArr[9].setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(edt1.isFocused())//에딧1에 포커스가 있을때
+//                {
+//                    String str1 = edt1.getText().toString() + "9";
+//                    edt1.setText(str1);
+//                }
+//                else if(edt2.isFocused())//에딧2에 포커스가 있을때
+//                {
+//                    String str1 = edt2.getText().toString() + "9";
+//                    edt2.setText(str1);
+//
+//                }
+//            }
+//        });
+
+
+
 
         //3.자바 view 객체에 조작을 가한다(변경한다)
         //버튼을 눌렀을 때, 이벤트 처리
